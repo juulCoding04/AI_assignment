@@ -90,7 +90,24 @@ def depthFirstSearch(problem: SearchProblem) -> List[Directions]:
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    frontier = util.Stack()
+    visited = []
+    
+    frontier.push((problem.getStartState(), []))
+
+    while not frontier.isEmpty():
+        current_state, actions = frontier.pop()
+
+        if problem.isGoalState(current_state):
+            return actions;
+
+        if current_state not in visited:
+            visited.append(current_state)
+            for succ, action, cost in problem.getSuccessors(current_state):
+                if succ not in visited:
+                    frontier.push((succ, actions + [action]))
+
+    return []
 
 def breadthFirstSearch(problem: SearchProblem) -> List[Directions]:
     """Search the shallowest nodes in the search tree first."""
