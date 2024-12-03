@@ -325,7 +325,7 @@ class CornersProblem(search.SearchProblem):
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
 
-            # if next square is not a wall do stuff
+            # if next square is not a wall check if it is a corner and append it to successors
             if not self.walls[nextx][nexty]:  
                 nextPosition = (nextx, nexty)
                 nextVisitedCorners = set(visitedCorners)
